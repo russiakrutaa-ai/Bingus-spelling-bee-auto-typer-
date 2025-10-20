@@ -3,17 +3,25 @@ local word = workspace.Sign.Board.Word
 local player = game.Players.LocalPlayer
 local typer = workspace.Sign.Board.Typer
 
+if not _G.UsingTheCheat then
+	_G.UsingTheCheat = true
+else
+	_G.UsingTheCheat = false
+end
+
 typer:GetPropertyChangedSignal("Value"):Connect(function()
 	if typer.Value == player.Name then
-		task.wait(0.13 * #word.Value)
+		if _G.UsingTheCheat then
+			task.wait(0.13 * #word.Value)
 		for i=1,#word.Value do
-			task.wait(0.006) -- change for higher WPM
+			task.wait(0.006)
 			print(word.Value:sub(1, i))
 			game.ReplicatedStorage.Events.ChangeText:FireServer(word.Value:sub(1, i))
 		end
 		task.wait(.3)
 		game.ReplicatedStorage.Events.Enter:FireServer(word.Value, workspace.Sign.Board.WordID.Value)
 		print("end")
+		end
 	end
 end)
 print("hi")
