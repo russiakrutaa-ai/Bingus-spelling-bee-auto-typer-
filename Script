@@ -11,7 +11,8 @@ else
 	print('DISABLED')
 end
 
-typer:GetPropertyChangedSignal("Value"):Connect(function()
+if not _G.UsingTheCheat then
+	typer:GetPropertyChangedSignal("Value"):Connect(function()
 	if typer.Value == player.Name then
 		if _G.UsingTheCheat then
 			task.wait(0.13 * #word.Value)
@@ -26,4 +27,5 @@ typer:GetPropertyChangedSignal("Value"):Connect(function()
 		end
 	end
 end)
+end
 print("hi")
