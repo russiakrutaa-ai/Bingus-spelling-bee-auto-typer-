@@ -5,8 +5,10 @@ local typer = workspace.Sign.Board.Typer
 
 if not _G.UsingTheCheat then
 	_G.UsingTheCheat = true
+	print('ENABLED')
 else
 	_G.UsingTheCheat = false
+	print('DISABLED')
 end
 
 typer:GetPropertyChangedSignal("Value"):Connect(function()
